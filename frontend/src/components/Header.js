@@ -65,7 +65,7 @@ if ($('.menu-area li.menu-item-has-children ul').length) {
 
     return(
 <header>
-        <div className="header-top-area">
+        {/* <div className="header-top-area">
           <div className="container custom-container">
             <div className="row align-items-center">
               <div className="col-md-7">
@@ -89,7 +89,7 @@ if ($('.menu-area li.menu-item-has-children ul').length) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */} 
         <div id="sticky-header" className="menu-area">
           <div className="container custom-container">
             <div className="row">

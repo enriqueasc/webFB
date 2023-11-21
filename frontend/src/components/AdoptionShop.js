@@ -9,10 +9,8 @@ function AdoptionShop() {
         <div className="col-xl-7 col-lg-9">
           <div className="section-title text-center mb-65">
             <div className="section-icon"><img src="img/icon/pawprint.png" alt="" /></div>
-            <h5 className="sub-title">Meet the animals</h5>
-            <h2 className="title">Puppies Waiting for Adoption</h2>
-            <p>The best overall dog DNA test is Embark Breed &amp; Health Kit (view at Chewy), which provides you with a
-              breed brwn and information Most dogs</p>
+            <h5 className="sub-title">Conoce a las mascotas</h5>
+            <h2 className="title">Cachorros en espera de adopción</h2>
           </div>
         </div>
       </div>

@@ -17,25 +17,25 @@ import BlogsHome from '../components/BlogsHome'
 function Home() {
 
 
-  return (
+	return (
 
-	
-		  <main>
-				<MainSlider/>
-				
-				<Counter/>
-				<Adoption/>
-				<BreedServices/>
-				<Faq afterElment="faq-area"/>
-				<Brand/>
-				<AdoptionShop/>
-				<Testimonial/>
-				<BlogsHome/>
-				<Newsletter/>
-				
+
+		<main>
+			<MainSlider />
+
+			{/* <Counter />
+			<Adoption /> */}
+			<BreedServices />
+			<Faq afterElment="faq-area" />
+			<Brand />
+			<AdoptionShop />
+			<Testimonial />
+			<BlogsHome />
+			<Newsletter />
+
 		</main>
-	  
-  )
+
+	)
 }
 
 export default Home;

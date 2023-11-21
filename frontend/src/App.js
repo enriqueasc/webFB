@@ -1,5 +1,5 @@
 
-import {HashRouter as Router, Switch} from 'react-router-dom';
+import { HashRouter as Router, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
@@ -17,54 +17,53 @@ import HometwoPage from './pages/HometwoPage'
 import ScrollToTopRoute from './ScrollToTopRoute'
 
 function App() {
-  
+
   return (
-  <div className='app'>
-   
-   <Router>
-       <Header/>
-       <Switch>
+    <div className='app'>
+
+      <Router>
+        <Header />
+        <Switch>
           <ScrollToTopRoute exact={true} path='/'>
-          <Home/>
+            <Home />
           </ScrollToTopRoute>
           <ScrollToTopRoute exact={true} path='/doglist'>
-            <DogList/>
+            <DogList />
           </ScrollToTopRoute>
-          <ScrollToTopRoute exact={true} path='/adoption'> 
-            <AdoptionsPages/>
+          <ScrollToTopRoute exact={true} path='/adoption'>
+            <AdoptionsPages />
           </ScrollToTopRoute>
           <ScrollToTopRoute exact={true} path='/contacts'>
-            <ContactPage/>
+            <ContactPage />
           </ScrollToTopRoute>
           <ScrollToTopRoute exact={true} path='/blogs'>
-          <BlogPage/>
+            <BlogPage />
           </ScrollToTopRoute>
           <ScrollToTopRoute exact={true} path='/blog-details'>
-          <BlogDetailsPage/>
+            <BlogDetailsPage />
           </ScrollToTopRoute>
           <ScrollToTopRoute exact={true} path='/shop'>
-           <ShopPages/>
+            <ShopPages />
           </ScrollToTopRoute>
           <ScrollToTopRoute exact={true} path='/shop-details'>
-          <ShopDetailsPage/>
+            <ShopDetailsPage />
           </ScrollToTopRoute>
           <ScrollToTopRoute exact={true} path='/breeder'>
-          <BreederPage/>
+            <BreederPage />
           </ScrollToTopRoute>
           <ScrollToTopRoute exact={true} path='/breeder-details'>
-          <BreederDetailsPage/>
+            <BreederDetailsPage />
           </ScrollToTopRoute>
 
           <ScrollToTopRoute exact={true} path='/home-two'>
-          <HometwoPage/>
+            <HometwoPage />
           </ScrollToTopRoute>
-       </Switch>
-       <Footer/>
-   </Router>
- 
-  </div>
+        </Switch>
+        <Footer />
+      </Router>
+
+    </div>
   );
 }
 
 export default App;
-   

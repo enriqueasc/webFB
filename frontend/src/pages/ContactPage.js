@@ -9,7 +9,7 @@ function ContactPage() {
 	  <main>
 	  <ContactBreadCumb/>
 	  <ContactForm/>
-	  <NewsLetter/>
+	  {/* <NewsLetter/> */}
 	  
 	  </main>
 
