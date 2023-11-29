@@ -1,6 +1,7 @@
 const express = require('express');  //para iniciar express
 const mongoose = require('mongoose'); // para conectarnos a la base de datos
 const bodyparser = require('body-parser');  // para capturar el body
+const cors = require('cors'); // para permitir peticiones desde cualquier frontend
 require('dotenv').config(); // es una configuracion  de nuestras variables de entornos
 
 const app = express();  //para apartir de esta cosntante realizar todas nustras configuraciones
@@ -8,6 +9,7 @@ const app = express();  //para apartir de esta cosntante realizar todas nustras 
 // capturar body
 app.use(bodyparser.urlencoded({ extended: false }));  // configuramos el body parser
 app.use(bodyparser.json());
+app.use(cors()); // configuramos cors
 
 // Conexión a Base de datosS
 const uri = `mongodb+srv://${process.env.USUARIO}:${process.env.PASSWORD}@cluster0.ryzbzxd.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;

@@ -2,7 +2,7 @@ import React from 'react';
 
 function ContactAddress() {
   return (
-    <div className="col-xl-12 col-lg-6 col-md-8">
+    <div className="col-xl-12 col-lg-12 col-md-8">
       <div className="contact-info-wrap">
         <div className="contact-img">
           <img src="img/images/contact_img.png" alt="" />
@@ -12,7 +12,6 @@ function ContactAddress() {
             <li>
               <div className="icon"><i className="fas fa-map-marker-alt" /></div>
               <div className="content">
-                {/* <p>W84 New Park Lan, New York, NY 4586 United States</p> */}
                 <a href='https://maps.app.goo.gl/n1F75BArGkeCH67o7' target='_blank'>Av. Pie de la Cuesta 2501, Nacional, 76148 Santiago de Querétaro, Qro.</a>
               </div>
             </li>
