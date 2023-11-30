@@ -18,8 +18,8 @@ const schemaRegister = Joi.object({
     estatus: Joi.string().min(1).max(255).required()
 });
 
+//registrar mascota
 router.post('/registroMascota', async(req, res)=>{
-
     //regresa un objeto validaciones y dentro viene
     const {error} = schemaRegister.validate(req.body);
 
@@ -28,7 +28,6 @@ router.post('/registroMascota', async(req, res)=>{
     if(error){
         return res.status(400).json({error: error.details[0].message})
     }
-
    
     const mascota = new Mascota({
         raza: req.body.raza,
@@ -56,11 +55,40 @@ router.post('/registroMascota', async(req, res)=>{
 
 })
 
-router.get('/', (req, res) => {
-    res.json({
-        estado: true,
-        mensaje: 'funciona!'
-    })
+
+//obtener mascotas
+async function getMascotas(){
+    const mascotas = await Mascota.find({});
+    return mascotas;
+
+};
+
+router.get('/', async(req, res) => {
+
+    getMascotas()
+        .then((mascotas) => {
+            res.json(mascotas);
+        });
+
+});
+
+//obtener mascotas por id
+async function getDetailMascota(id){
+    const mascota = await Mascota.findById(id)
+    
+    return mascota;
+
+};
+
+router.get('/datail', async(req, res) => {
+
+    const id = req.header('id');
+
+    getDetailMascota(id)
+        .then((mascotas) => {
+            res.json(mascotas);
+        });
+
 });
 
 module.exports = router;
