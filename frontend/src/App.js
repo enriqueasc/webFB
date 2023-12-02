@@ -21,77 +21,15 @@ import RegisterScreen from './pages/auth/RegisterScreen';
 function App() {
 
   return (
-    // <div className='app'>
-
-    //   <Router>
-    //     <Header />
-    //     <Switch>
-    //       <ScrollToTopRoute exact={true} path='/'>
-    //         <Home />
-    //       </ScrollToTopRoute>
-    //       <ScrollToTopRoute exact={true} path='/doglist'>
-    //         <DogList />
-    //       </ScrollToTopRoute>
-    //       <ScrollToTopRoute exact={true} path='/adoption'>
-    //         <AdoptionsPages />
-    //       </ScrollToTopRoute>
-    //       <ScrollToTopRoute exact={true} path='/contacts'>
-    //         <ContactPage />
-    //       </ScrollToTopRoute>
-    //       <ScrollToTopRoute exact={true} path='/blogs'>
-    //         <BlogPage />
-    //       </ScrollToTopRoute>
-    //       <ScrollToTopRoute exact={true} path='/blog-details'>
-    //         <BlogDetailsPage />
-    //       </ScrollToTopRoute>
-    //       <ScrollToTopRoute exact={true} path='/shop'>
-    //         <ShopPages />
-    //       </ScrollToTopRoute>
-    //       <ScrollToTopRoute exact={true} path='/shop-details'>
-    //         <ShopDetailsPage />
-    //       </ScrollToTopRoute>
-    //       <ScrollToTopRoute exact={true} path='/breeder'>
-    //         <BreederPage />
-    //       </ScrollToTopRoute>
-    //       <ScrollToTopRoute exact={true} path='/breeder-details'>
-    //         <BreederDetailsPage />
-    //       </ScrollToTopRoute>
-
-    //       <ScrollToTopRoute exact={true} path='/home-two'>
-    //         <HometwoPage />
-    //       </ScrollToTopRoute>
-
-
-
-    //     </Switch>
-    //     <Footer />
-    //   </Router>
-
-    //   <Router>
-    //       <ScrollToTopRoute  path='/login'>
-    //         <LoginScreen />
-    //       </ScrollToTopRoute>
-    //       <ScrollToTopRoute exact={true} path='/register'>
-    //         <RegisterScreen />
-    //       </ScrollToTopRoute>
-    //   </Router>
-
-    // </div>
-
-
     <div className='app'>
       <Router>
         <Switch>
           {/* Rutas que no incluyen el header y el footer */}
-          <Route path={['/login', '/register']}>
-            <Switch>
-              <ScrollToTopRoute path='/login'>
-                <LoginScreen />
-              </ScrollToTopRoute>
-              <ScrollToTopRoute path='/register'>
-                <RegisterScreen />
-              </ScrollToTopRoute>
-            </Switch>
+          <Route path='/login'>
+            <LoginScreen />
+          </Route>
+          <Route path='/register'>
+            <RegisterScreen />
           </Route>
 
           {/* Rutas que incluyen el header y el footer */}
@@ -128,7 +66,6 @@ function App() {
               <ScrollToTopRoute exact={true} path='/breeder-details'>
                 <BreederDetailsPage />
               </ScrollToTopRoute>
-
               <ScrollToTopRoute exact={true} path='/home-two'>
                 <HometwoPage />
               </ScrollToTopRoute>

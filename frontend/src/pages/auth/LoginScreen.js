@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // importamos una imagen
 import pet_auth from '../../assets/pets_auth.jpg'
+import { authApi } from '../../api/Auth';
 
 
 export default function LoginScreen() {
@@ -38,11 +41,42 @@ export default function LoginScreen() {
 
                       return errors;
                     }}
-                    onSubmit={(values, { setSubmitting }) => {
-                      setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
-                        setSubmitting(false);
-                      }, 400);
+                    onSubmit={(values) => {
+                      // Llamar a la api de login
+                      try {
+                        authApi.login(values.email, values.password)
+                          .then(response => {
+                            console.log(response);
+                            // Redireccionar a la pagina de login despues de 3s para mostrar el mensaje de exito
+                            toast('🦄 Inicio de sesión exitoso!', {
+                              position: "top-right",
+                              autoClose: 3000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                            });
+
+                            setTimeout(() => {
+                              window.location.href = '/shop';
+                            }, 3000);
+                          })
+                          .catch(error => {
+                            console.log(error);
+                            toast.error('🦄 Error al iniciar sesión!', {
+                              position: "top-right",
+                              autoClose: 3000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                            });
+                          });
+                      } catch (error) {
+                        console.log(error);
+                      }
                     }}
                   >
                     {({ isSubmitting }) => (
@@ -77,6 +111,7 @@ export default function LoginScreen() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   )
 }
