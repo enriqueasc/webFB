@@ -31,7 +31,8 @@ const mascotaRoutes = require('./routes/mascota');
 // route middlewares
 app.use('/api/user', authRoutes);
 app.use('/api/dashboard', verifyToken, dashboardRoutes);
-app.use('/api/mascota', verifyToken, mascotaRoutes);
+// app.use('/api/mascota', verifyToken, mascotaRoutes);
+app.use('/api/mascota', mascotaRoutes);
 
 app.get('/', (req, res) => {
     res.json({

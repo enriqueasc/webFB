@@ -6,5 +6,7 @@ export const ENV ={
         LOGIN: 'user/login/',
         USERS_ME: 'users/me',   
         USERS: 'users',
+
+        GET_PETS: 'mascota/',
     }, 
 }
