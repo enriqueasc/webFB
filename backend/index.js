@@ -24,12 +24,14 @@ const authRoutes = require('./routes/auth');
 const verifyToken = require('./routes/validate-token');
 const dashboardRoutes = require('./routes/dashboard');
 const mascotaRoutes = require('./routes/mascota');
+const productosRoutes = require('./routes/productos');
 
 
 // route middlewares
 app.use('/api/user', authRoutes);
 app.use('/api/dashboard', verifyToken, dashboardRoutes);
-app.use('/api/mascota', verifyToken, mascotaRoutes);
+app.use('/api/mascota', mascotaRoutes);
+app.use('/api/productos', productosRoutes);
 
 app.get('/', (req, res) => {
     res.json({
