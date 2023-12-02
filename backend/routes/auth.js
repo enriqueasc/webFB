@@ -52,7 +52,7 @@ router.post('/login', async(req, res)=>{
 
 router.post('/register', async(req, res)=>{
 
-    //regresa un onjeto validaciones y dentro viwene
+    //regresa un objeto validaciones y dentro viwene
 
     const {error} = schemaRegister.validate(req.body);
 
