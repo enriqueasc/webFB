@@ -8,5 +8,6 @@ export const ENV ={
         USERS: 'users',
 
         GET_PETS: 'mascota/',
+        REGISTER_PETS: 'mascota/registroMascota',
     }, 
 }

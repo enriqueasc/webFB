@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { hasToken } from '../../api/Token';
 
 // importamos una imagen
 import pet_auth from '../../assets/pets_auth.jpg'
