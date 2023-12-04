@@ -8,7 +8,7 @@ function ContactForm() {
         <div className="container">
           <div className="container-inner-wrap">
             <div className="row justify-content-center justify-content-lg-between">
-              <div className="col-lg-6 col-md-8 order-2 order-lg-0">
+              {/* <div className="col-lg-6 col-md-8 order-2 order-lg-0">
                 <div className="contact-title mb-20">
                   <h5 className="sub-title">Contact Us</h5>
                   <h2 className="title">Let's Talk Question<span>.</span></h2>
@@ -35,7 +35,7 @@ function ContactForm() {
                     <button type="button" className="btn rounded-btn">Send Now</button>
                   </form>
                 </div>
-              </div>
+              </div> */}
 
               <ContactAddress/>
 

@@ -25,12 +25,12 @@ function MainSlider() {
               <div className="col-xl-5 col-lg-7 col-md-10">
                 <div className="slider-content">
                   <div className="slider-title">
-                    <h2 className="title" data-animation="fadeInUpBig" data-delay=".2s" data-duration="1.2s">Apoya <span>was</span> Tiempo feliz</h2>
+                    <h2 className="title" data-animation="fadeInUpBig" data-delay=".2s" data-duration="1.2s">Encuentra amor en cada huella. Adopta, no compres.</h2>
                   </div>
                   <div className="slider-desc">
-                    <p className="desc" data-animation="fadeInUpBig" data-delay=".4s" data-duration="1.2s">Human Shampoo on Dogs After six days of delirat, the jury found Hernandez guilty of first-degree murder</p>
+                    <p className="desc" data-animation="fadeInUpBig" data-delay=".4s" data-duration="1.2s">En nuestra iniciativa de adopción de perritos, buscamos hogares amorosos para estos fieles compañeros.</p>
                   </div>
-                  <Link to="/doglist" className="btn" data-animation="fadeInUpBig" data-delay=".6s" data-duration="1.2s">View More <img src="img/icon/w_pawprint.png" alt="" /></Link>
+                  <Link to="/doglist" className="btn" data-animation="fadeInUpBig" data-delay=".6s" data-duration="1.2s">Adóptame<img src="img/icon/w_pawprint.png" alt="" /></Link>
                 </div>
               </div>
             </div>

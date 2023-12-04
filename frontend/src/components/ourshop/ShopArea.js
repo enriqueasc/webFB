@@ -1,271 +1,239 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import Modal from 'react-bootstrap/Modal';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { hasToken } from '../../api/Token';
+import { Productos } from '../../api/Productos';
 
 function ShopArea() {
+  const [productos, setProductos] = useState([]);
+  const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
+
+  useEffect(() => {
+    try {
+      const getProducts = async () => {
+        const response = await Productos.getProducts();
+        console.log(response);
+        setProductos(response);
+      };
+      getProducts();
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }, [])
+
   return (
-	  <div className="shop-area pt-110 pb-110">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-3 col-md-8 order-2 order-lg-0">
-              <aside className="shop-sidebar">
-                <div className="widget">
-                  <div className="sidebar-search">
-                    <form>
-                      <input type="text" placeholder="Search ..." />
-                      <button type="submit"><i className="fa fa-search" /></button>
-                    </form>
-                  </div>
-                </div>
-                <div className="widget">
-                  <h4 className="sidebar-title">Category</h4>
-                  <div className="shop-cat-list">
-                    <ul>
-                      <li><Link to="/shop">Squeaky <span>+</span></Link></li>
-                      <li><Link to="/shop">Dog Food <span>+</span></Link></li>
-                      <li><Link to="/shop">Dog-Kit <span>+</span></Link></li>
-                      <li><Link to="/shop">Dog Home <span>+</span></Link></li>
-                      <li><Link to="/shop">Safety-Suits <span>+</span></Link></li>
-                      <li><Link to="/shop">Pet Protect <span>+</span></Link></li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="widget">
-                  <h4 className="sidebar-title">Top Brand</h4>
-                  <div className="shop-brand-list">
-                    <ul>
-                      <li><Link to="/shop">Geco</Link></li>
-                      <li><Link to="/shop">Carnation</Link></li>
-                      <li><Link to="/shop">Suppke</Link></li>
-                      <li><Link to="/shop">WeBeyond</Link></li>
-                      <li><Link to="/shop">Edstudy</Link></li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="widget">
-                  <h4 className="sidebar-title">Filter by Price</h4>
-                  <div className="price_filter">
-                    <div id="slider-range" />
-                    <div className="price_slider_amount">
-                      <span>Price :</span>
-                      <input type="text" id="amount" name="price" placeholder="Add Your Price" />
-                      <input type="submit" className="btn" defaultValue="Filter" />
-                    </div>
-                  </div>
-                </div>
-                <div className="widget shop-widget-banner">
-                  <Link to="/shop"><img src="img/product/shop_add.jpg" alt="" /></Link>
-                </div>
-              </aside>
-            </div>
-            <div className="col-lg-9">
-              <div className="shop-wrap">
-                <h4 className="title">Shop</h4>
-                <div className="shop-page-meta mb-30">
-                  <div className="shop-grid-menu">
-                    <ul>
-                      <li className="active"><a href="/#"><i className="fas fa-th" /></a></li>
-                      <li><a href="/#"><i className="fas fa-list" /></a></li>
-                    </ul>
-                  </div>
-                  <div className="shop-showing-result">
-                    <p>Total Items 1-12 of 13</p>
-                  </div>
-                  <div className="shop-show-list">
-                    <form>
-                      <label htmlFor="show">Show</label>
-                      <select id="show" className="selected">
-                        <option value>08</option>
-                        <option value>12</option>
-                        <option value>16</option>
-                        <option value>18</option>
-                        <option value>20</option>
-                      </select>
-                    </form>
-                  </div>
-                  <div className="shop-short-by">
-                    <form>
-                      <label htmlFor="shortBy">Sort By</label>
-                      <select id="shortBy" className="selected">
-                        <option value>Sort by latest</option>
-                        <option value>Low to high</option>
-                        <option value>High to low</option>
-                        <option value>Popularity</option>
-                      </select>
-                    </form>
-                  </div>
-                </div>
-                <div className="row justify-content-center">
-                  <div className="col-lg-4 col-sm-6">
+    <div className="shop-area pt-110 pb-110">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-lg-3 col-md-8 order-2 order-lg-0">
+            <aside className="shop-sidebar">
+
+              <div className="widget">
+                <h5 className="sub-title">¿Deseas publicar un producto?</h5>
+                {hasToken() ?
+                  <button className="btn" onClick={handleShow2}>Publicar</button>
+                  :
+                  <Link to="/login" className="btn">Iniciar sesión</Link>
+                }
+                {/* <button className="btn" onClick={handleShow2}>¿Deseas vender?</button> */}
+              </div>
+
+              <div className="widget shop-widget-banner">
+                <Link to="/shop"><img src="img/product/shop_add.jpg" alt="" /></Link>
+              </div>
+
+            </aside>
+          </div>
+
+          <div className="col-lg-9">
+            <div className="shop-wrap">
+              <h4 className="title">Tienda</h4>
+              <div className="row justify-content-center">
+                {productos.map((producto) => (
+                  <div key={producto._id} className="col-lg-4 col-sm-6">
                     <div className="shop-item mb-55">
                       <div className="shop-thumb">
-                        <Link to="/shop-details"><img src="img/product/shop_item01.jpg" alt="" /></Link>
+                        <img src="img/product/shop_item01.jpg" alt="" />
                       </div>
                       <div className="shop-content">
-                        <span>Dog toy’s</span>
-                        <h4 className="title"><Link to="/shop-details">Pet Knit Knacks</Link></h4>
+                        {/* <span>Dog toy’s</span> */}
+                        <h4 className="title"><a className='' onClick={handleShow}>{producto.nombre}</a></h4>
                         <div className="shop-content-bottom">
-                          <span className="price">$28.00</span>
-                          <span className="add-cart"><Link to="/shop-details">ADD +</Link></span>
+                          <span className="price">${producto.precio}</span>
                         </div>
                       </div>
                     </div>
+
+                    <Modal show={show} onHide={handleClose} animation={false}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Información del producto</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <ul>
+                          <li>Detalle: {producto.descripcion}</li>
+                          <li>Teléfono: {producto.telefono}</li>
+                          <li>Dirección: {producto.direccion}</li>
+                        </ul>
+                      </Modal.Body>
+                      {/* <Modal.Footer>
+                        <button variant="secondary" onClick={handleClose}>
+                          Close
+                        </button>
+                        <button variant="primary" onClick={handleClose}>
+                          Save Changes
+                        </button>
+                      </Modal.Footer> */}
+                    </Modal>
                   </div>
-                  <div className="col-lg-4 col-sm-6">
-                    <div className="shop-item mb-55">
-                      <div className="shop-thumb">
-                        <Link to="/shop-details"><img src="img/product/shop_item02.jpg" alt="" /></Link>
-                      </div>
-                      <div className="shop-content">
-                        <span>Dog toy’s</span>
-                        <h4 className="title"><Link to="/shop-details">Squeaky Dog</Link></h4>
-                        <div className="shop-content-bottom">
-                          <span className="price">$19.00</span>
-                          <span className="add-cart"><Link to="shop-details">ADD +</Link></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-sm-6">
-                    <div className="shop-item mb-55">
-                      <div className="shop-thumb">
-                        <Link to="/shop-details"><img src="img/product/shop_item03.jpg" alt="" /></Link>
-                      </div>
-                      <div className="shop-content">
-                        <span>Dog toy’s</span>
-                        <h4 className="title"><Link to="/shop-details">Pet Knit Knacks</Link></h4>
-                        <div className="shop-content-bottom">
-                          <span className="price">$29.00</span>
-                          <span className="add-cart"><Link to="/shop-details">ADD +</Link></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-sm-6">
-                    <div className="shop-item mb-55">
-                      <div className="shop-thumb">
-                        <Link to="/shop-details"><img src="img/product/shop_item04.jpg" alt="" /></Link>
-                      </div>
-                      <div className="shop-content">
-                        <span>Dog toy’s</span>
-                        <h4 className="title"><Link to="/shop-details">Yoda Carriage</Link></h4>
-                        <div className="shop-content-bottom">
-                          <span className="price">$49.00</span>
-                          <span className="add-cart"><Link to="/shop-details">ADD +</Link></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-sm-6">
-                    <div className="shop-item mb-55">
-                      <div className="shop-thumb">
-                        <Link to="/shop-details"><img src="img/product/shop_item05.jpg" alt="" /></Link>
-                      </div>
-                      <div className="shop-content">
-                        <span>Dog toy’s</span>
-                        <h4 className="title"><Link to="/shop-details">Pet Carriage</Link></h4>
-                        <div className="shop-content-bottom">
-                          <span className="price">$09.00</span>
-                          <span className="add-cart"><Link to="/shop-details">ADD +</Link></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-sm-6">
-                    <div className="shop-item mb-55">
-                      <div className="shop-thumb">
-                        <Link to="/shop-details"><img src="img/product/shop_item06.jpg" alt="" /></Link>
-                      </div>
-                      <div className="shop-content">
-                        <span>Dog toy’s</span>
-                        <h4 className="title"><Link to="/shop-details">Squeaky Dog</Link></h4>
-                        <div className="shop-content-bottom">
-                          <span className="price">$16.00</span>
-                          <span className="add-cart"><Link to="/shop-details">ADD +</Link></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-sm-6">
-                    <div className="shop-item mb-55">
-                      <div className="shop-thumb">
-                        <Link to="/shop-details"><img src="img/product/shop_item07.jpg" alt="" /></Link>
-                      </div>
-                      <div className="shop-content">
-                        <span>Dog toy’s</span>
-                        <h4 className="title"><Link to="/shop-details">Carriage Dog</Link></h4>
-                        <div className="shop-content-bottom">
-                          <span className="price">$18.00</span>
-                          <span className="add-cart"><Link to="/shop-details">ADD +</Link></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-sm-6">
-                    <div className="shop-item mb-55">
-                      <div className="shop-thumb">
-                        <Link to="/shop-details"><img src="img/product/shop_item08.jpg" alt="" /></Link>
-                      </div>
-                      <div className="shop-content">
-                        <span>Dog toy’s</span>
-                        <h4 className="title"><Link to="/shop-details">Yoda Carriage</Link></h4>
-                        <div className="shop-content-bottom">
-                          <span className="price">$12.00</span>
-                          <span className="add-cart"><Link to="/shop-details">ADD +</Link></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-sm-6">
-                    <div className="shop-item mb-55">
-                      <div className="shop-thumb">
-                        <Link to="/shop-details"><img src="img/product/shop_item09.jpg" alt="" /></Link>
-                      </div>
-                      <div className="shop-content">
-                        <span>Dog toy’s</span>
-                        <h4 className="title"><Link to="/shop-details">Pet Knit Knacks</Link></h4>
-                        <div className="shop-content-bottom">
-                          <span className="price">$32.00</span>
-                          <span className="add-cart"><Link to="/shop-details">ADD +</Link></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="shop-page-meta">
-                  <div className="shop-grid-menu">
-                    <ul>
-                      <li className="active"><a href="/#"><i className="fas fa-th" /></a></li>
-                      <li><a href="/#"><i className="fas fa-list" /></a></li>
-                    </ul>
-                  </div>
-                  <div className="shop-showing-result">
-                    <p>Total Items 1-12 of 13</p>
-                  </div>
-                  <div className="shop-show-list">
-                    <form>
-                      <label htmlFor="bottomShow">Show</label>
-                      <select id="bottomShow" className="selected">
-                        <option value>08</option>
-                        <option value>12</option>
-                        <option value>16</option>
-                        <option value>18</option>
-                        <option value>20</option>
-                      </select>
-                    </form>
-                  </div>
-                  <div className="shop-pagination">
-                    <ul>
-                      <li className="active"><Link to="/shop">1</Link></li>
-                      <li><Link to="/shop">2</Link></li>
-                      <li><Link to="/shop"><i className="fas fa-angle-double-right" /></Link></li>
-                    </ul>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <ToastContainer />
+
+      <Modal show={show2} onHide={handleClose2}>
+        <Modal.Header closeButton>
+          <Modal.Title>Agregar producto</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Formik
+            initialValues={{
+              nombre: '',
+              descripcion: '',
+              precio: '',
+              telefono: '',
+              direccion: '',
+              estatus: '1',
+            }}
+            validate={(valores) => {
+              let errores = {};
+
+              if (!valores.nombre) {
+                errores.nombre = 'Por favor ingresa el nombre del producto';
+              }
+              if (!valores.descripcion) {
+                errores.descripcion = 'Por favor ingresa la descripción del producto';
+              }
+              if (!valores.precio) {
+                errores.precio = 'Por favor ingresa el precio del producto';
+              }
+              if (!valores.telefono) {
+                errores.telefono = 'Por favor ingresa el teléfono de contacto';
+              }
+              if (!valores.direccion) {
+                errores.direccion = 'Por favor ingresa la dirección del contacto';
+              }
+
+              return errores;
+            }}
+            onSubmit={(valores) => {
+              try {
+                const nuevoProducto = {
+                  nombre: valores.nombre,
+                  descripcion: valores.descripcion,
+                  precio: valores.precio,
+                  telefono: valores.telefono,
+                  direccion: valores.direccion,
+                  estatus: valores.estatus,
+                };
+                Productos.registerProduct(nuevoProducto)
+                  .then(res => {
+                    console.log(res);
+                    toast('Producto registrado exitosamente!', {
+                      position: "top-right",
+                      autoClose: 3000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                    });
+
+                    // Cerrar modal
+                    handleClose();
+                  })
+                  .catch(error => {
+                    console.log(error);
+                    toast.error('Error al registrar producto!', {
+                      position: "top-right",
+                      autoClose: 3000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                    });
+
+                    // Cerrar modal
+                    handleClose2();
+                  });
+              } catch (error) {
+                console.log(error);
+              }
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form className="contact-form">
+                <div className="row">
+                  <div className="form-grp col-6">
+                    <label htmlFor="nombre">Nombre del producto <span>*</span></label>
+                    <Field type="text" name="nombre" placeholder="Ingresa nombre" />
+                    <ErrorMessage name="nombre" component="div" style={{ color: 'red' }} />
+                  </div>
+                  <div className="form-grp col-6">
+                    <label htmlFor="precio">Precio <span>*</span></label>
+                    <Field type="text" name="precio" placeholder="Ingresa precio" />
+                    <ErrorMessage name="precio" component="div" style={{ color: 'red' }} />
+                  </div>
+                </div>
+                <div className="row">
+                </div>
+                <div className="form-grp">
+                  <label htmlFor="descripcion">Descripción <span>*</span></label>
+                  <Field type="text" name="descripcion" placeholder="Ingresa descripción" />
+                  <ErrorMessage name="descripcion" component="div" style={{ color: 'red' }} />
+                </div>
+                <div className="row">
+                  <div className="form-grp col-6">
+                    <label htmlFor="telefono">Teléfono <span>*</span></label>
+                    <Field type="text" name="telefono" placeholder="Ingresa el teléfono" />
+                    <ErrorMessage name="telefono" component="div" style={{ color: 'red' }} />
+                  </div>
+                  <div className="form-grp col-6">
+                    <label htmlFor="direccion">Dirección <span>*</span></label>
+                    <Field type="text" name="direccion" placeholder="Ingresa dirección" />
+                    <ErrorMessage name="direccion" component="div" style={{ color: 'red' }} />
+                  </div>
+                </div>
+                <Modal.Footer>
+                  <button type="submit" className="btn rounded-btn">
+                    Registrar producto
+                  </button>
+                </Modal.Footer>
+              </Form>
+            )}
+          </Formik>
+
+
+        </Modal.Body>
+
+      </Modal>
+    </div>
   )
 }
 
