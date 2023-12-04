@@ -10,7 +10,7 @@ app.use(bodyparser.urlencoded({ extended: false }));  // configuramos el body pa
 app.use(bodyparser.json());
 
 // Conexión a Base de datosS
-const uri = `mongodb+srv://${process.env.USUARIO}:${process.env.PASSWORD}@cluster0.ryzbzxd.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
+const uri = process.env.MONGODB_URI;
 
 const option =  { useNewUrlParser: true, useUnifiedTopology: true };
 
