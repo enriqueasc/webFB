@@ -96,7 +96,7 @@ export default function RegisterScreen() {
                           <ErrorMessage name="password" component="div" style={{ color: 'red' }} />
                         </div>
                         <button type="submit" className="btn rounded-btn" disabled={isSubmitting}>
-                          Inicia sesión
+                          Registrar cuenta
                         </button>
                       </Form>
                     )}

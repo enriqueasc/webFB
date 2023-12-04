@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import $ from 'jquery';
+import { hasToken } from '../api/Token';
 
 function Header() {
+  const logout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/';
+  }
+  
   const handleActive = (e) => {
     document.querySelectorAll('.main-menu ul li').forEach(el => {
       el.classList.remove('active');
@@ -90,7 +96,12 @@ function Header() {
                   </div>
                   <div className="header-action d-none d-md-block">
                     <ul>
-                      <li className="header-btn"><Link to="/login" className="btn">Iniciar sesión <img src="img/icon/w_pawprint.png" alt="" /></Link></li>
+                      {hasToken() ?
+                        <li className="header-btn"><button onClick={logout} className="btn">Cerrar sesión <img src="img/icon/w_pawprint.png" alt="" /></button></li>
+                        :
+                        <li className="header-btn"><Link to="/login" className="btn">Iniciar sesión <img src="img/icon/w_pawprint.png" alt="" /></Link></li>
+                      }
+                      {/* <li className="header-btn"><Link to="/login" className="btn">Iniciar sesión <img src="img/icon/w_pawprint.png" alt="" /></Link></li> */}
                     </ul>
                   </div>
                 </nav>

@@ -32,13 +32,8 @@ const productosRoutes = require('./routes/productos');
 // route middlewares
 app.use('/api/user', authRoutes);
 app.use('/api/dashboard', verifyToken, dashboardRoutes);
-<<<<<<< HEAD
-// app.use('/api/mascota', verifyToken, mascotaRoutes);
-app.use('/api/mascota', mascotaRoutes);
-=======
 app.use('/api/mascota', mascotaRoutes);
 app.use('/api/productos', productosRoutes);
->>>>>>> eascencio
 
 app.get('/', (req, res) => {
     res.json({

@@ -9,5 +9,8 @@ export const ENV ={
 
         GET_PETS: 'mascota/',
         REGISTER_PETS: 'mascota/registroMascota',
+
+        GET_PRODUCTS: 'productos/',
+        REGISTER_PRODUCTS: 'productos/registroProducto',
     }, 
 }
