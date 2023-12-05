@@ -9,7 +9,12 @@ const app = express();  //para apartir de esta cosntante realizar todas nustras 
 // capturar body
 app.use(bodyparser.urlencoded({ extended: false }));  // configuramos el body parser
 app.use(bodyparser.json());
-app.use(cors()); // configuramos cors
+app.use(cors({
+    origin: '*',
+    methods: ['GET','HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+})); // configuramos cors
 app.use(express.static(__dirname + '/public'));
 
 // Conexión a Base de datosS
@@ -42,6 +47,6 @@ app.get('/', (req, res) => {
 
 // iniciar server
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`servidor andando en: ${PORT}`)
 })
