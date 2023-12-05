@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import $ from 'jquery';
 import { hasToken } from '../api/Token';
 
 function Header() {
+  const history = useHistory();
+  
   const logout = () => {
     localStorage.removeItem('token');
-    window.location.href = '/';
+    history.push('/shop');
   }
   
   const handleActive = (e) => {

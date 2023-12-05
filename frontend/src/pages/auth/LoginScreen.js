@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +10,8 @@ import { authApi } from '../../api/Auth';
 
 
 export default function LoginScreen() {
+  const history = useHistory();
+  
   return (
     <section className="contact-area pt-50 pb-50">
       <div className="container">
@@ -59,7 +61,7 @@ export default function LoginScreen() {
                             });
 
                             setTimeout(() => {
-                              window.location.href = '/shop';
+                              history.push('/shop');
                             }, 3000);
                           })
                           .catch(error => {
