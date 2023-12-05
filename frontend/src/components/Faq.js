@@ -32,8 +32,8 @@ function Faq({ afterElment }) {
         <div className="col-lg-6">
           <div className="faq-wrapper">
             <div className="section-title mb-35">
-              <h5 className="sub-title">FAQ Question</h5>
-              <h2 className="title">History &amp; Family Adoption</h2>
+              <h5 className="sub-title">Preguntas frecuentes</h5>
+              <h2 className="title">History &amp; Family Adoption</h2> 
             </div>
             <div className="accordion" id="accordionExample">
               <div className="card">

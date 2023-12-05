@@ -10,11 +10,11 @@ function BreadCumb() {
           <div className="row">
             <div className="col-12">
               <div className="breadcrumb-content">
-                <h2 className="title">Dog List</h2>
+                <h2 className="title">Lista de mascotas</h2>
                 <nav aria-label="breadcrumb">
                   <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">Dog List</li>
+                    <li className="breadcrumb-item"><Link to="/">Ir al inicio</Link></li>
+                    <li className="breadcrumb-item active" aria-current="page">Lista de mascotas</li>
                   </ol>
                 </nav>
               </div>

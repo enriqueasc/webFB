@@ -14,9 +14,10 @@ function DogList() {
 	  <main>
 	   <BreadCumb/>
 	   <AdoptionShop/>
-	   <Faq afterElment="faq-area-two"/>
-	   <BreedServices />
-	   <NewsLetter/>
+	   {/* <Faq/> */}
+	   {/* <Faq afterElment="faq-area-two"/> */}
+	   {/* <BreedServices /> */}
+	   {/* <NewsLetter/> */}
 	  </main>
   )
 }
