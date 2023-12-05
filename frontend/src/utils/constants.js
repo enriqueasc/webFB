@@ -1,5 +1,5 @@
 export const ENV ={
-    API_URL : 'http://localhost:3002/api',
+    API_URL : 'https://webfb.onrender.com/api',
 
     ENDPOINTS : {
         REGISTER: 'user/register/',
