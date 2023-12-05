@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +10,8 @@ import pet_auth from '../../assets/pets_auth.jpg'
 import { authApi } from '../../api/Auth';
 
 export default function RegisterScreen() {
+  const history = useHistory();
+
   return (
     <section className="contact-area pt-50 pb-50">
       <div className="container">
@@ -63,9 +65,8 @@ export default function RegisterScreen() {
                             });
 
                             setTimeout(() => {
-                              window.location.href = '/login';
+                              history.push('/login');
                             }, 3000);
-
 
                           })
                           .catch(error => {

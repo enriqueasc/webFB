@@ -10,10 +10,11 @@ const app = express();  //para apartir de esta cosntante realizar todas nustras 
 app.use(bodyparser.urlencoded({ extended: false }));  // configuramos el body parser
 app.use(bodyparser.json());
 app.use(cors()); // configuramos cors
+app.use(express.static(__dirname + '/public'));
 
 // Conexión a Base de datosS
-const uri = process.env.MONGODB_URI;
-
+const uri = `mongodb+srv://${process.env.USUARIO}:${process.env.PASSWORD}@cluster0.ryzbzxd.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
+// const uri = process.env.MONGO_URI;
 const option =  { useNewUrlParser: true, useUnifiedTopology: true };
 
 mongoose.connect(uri, option)
@@ -36,10 +37,7 @@ app.use('/api/mascota', mascotaRoutes);
 app.use('/api/productos', productosRoutes);
 
 app.get('/', (req, res) => {
-    res.json({
-        estado: true,
-        mensaje: 'funciona!'
-    })
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 // iniciar server
